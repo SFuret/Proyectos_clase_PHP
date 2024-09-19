@@ -8,7 +8,8 @@
 <body>
     <h1>Datos personales</h1>
 
-     <?php $nombre="Sandra";
+     <?php 
+     $nombre="Sandra";
      $anyoNac=1985;
 
      ?>
