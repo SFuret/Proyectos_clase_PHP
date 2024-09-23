@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas ampliado</title>
+</head>
+<body>
 <?php 
 $nota1=rand(0,10);
 $nota2=6;
@@ -43,3 +51,6 @@ else{
 
 
 ?>
+</body>
+</html>
+

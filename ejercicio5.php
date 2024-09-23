@@ -1,3 +1,14 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas</title>
+</head>
+<body>
+    <h1>Mostrar mayor nota</h1>
 <?php 
 $nota1=rand(0,10);  /*Número aleatorio de 0 a 10*/
 $nota2=6;
@@ -17,3 +28,6 @@ else{
 }
 
 ?>
+</body>
+</html>
+
