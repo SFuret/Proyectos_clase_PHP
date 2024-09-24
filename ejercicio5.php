@@ -15,7 +15,7 @@ $nota2=6;
 $nota3=8.1;
 
 if(($nota1>$nota2)&&($nota1>$nota3))
-{
+{ 
     echo "<p>La nota mayor es: $nota1 </p>";
 }
 elseif(($nota2>$nota1)&&($nota2>$nota3))
