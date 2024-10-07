@@ -19,7 +19,16 @@ $persona= new Persona('45210365J','David','david@yahoo.com');
 $estudiante->__setNumExpediente('H8888');
 $persona->__setNombre('Daniel');
 
-echo "El estudiante es:";
+echo "<h3>El estudiante es:</h3>";
+$estudiante->mostrar();
+?>
+
+<br>
+<br>
+
+<?php
+
+echo "<h3>La persona es:</h3>";
 $persona->mostrar();
 ?>
 

@@ -23,6 +23,7 @@ public function __getNumExpediente()
 
     public function mostrar()
     {
+      parent::mostrar();  
       echo "<p>-$this->numExpediente </p>";
 
     }
