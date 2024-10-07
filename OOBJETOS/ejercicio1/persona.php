@@ -1,19 +1,10 @@
 <?php 
 
-
-
-class Persona{
-
+class Persona {
     private $dni;
     private $nombre;
     private $email;
 
-    /*public function __construct($dni,$n,$e)
-    {
-        $this->dni=$dni;
-        $this->nombre=$n;
-        $this->email=$e;
-    }*/
     public function __construct($dni,$n,$e)
     {
         $this->dni=$dni;
@@ -55,7 +46,7 @@ class Persona{
 
     public function mostrar()
     {
-      echo "<p>$this->dni-$this->nombre-$this->email </p>";
+      echo "<p>DNI: ".$this->dni."-Nombre:".$this->nombre."-email: ".$this->email."</p>";
 
     }
 
