@@ -1,9 +1,9 @@
 <?php 
 
 // Recibiendo los datos del formulario
+/*isset() devuelve true si la variable existe y no es null(tiene contenido) y false en caso contrario*/
 
-
-if(isset($_GET('enviar'))) //comprueva que existe el formulario
+if(isset($_GET('enviar'))) //comprueba que existe el formulario
 {
 /*Forma 1 de recibir*/
 if(isset($_GET['nombre']))
