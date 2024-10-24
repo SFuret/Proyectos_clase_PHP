@@ -58,5 +58,15 @@ echo "Comentarios: " . htmlspecialchars($comentarios) . "<br>";
 echo "Fecha de nacimiento: " . htmlspecialchars($fecha) . "<br>";
 echo "Edad: " . htmlspecialchars($edad) . "<br>";
 
+/*Nota: htmlspecialchars() es una función en PHP que convierte caracteres especiales en sus equivalentes de entidades HTML. 
+Esto es útil para prevenir ataques de Cross-Site Scripting (XSS), que ocurren cuando un atacante intenta inyectar código 
+malicioso (como JavaScript) en una página web mediante la entrada de datos del usuario.
 
+Sin usar htmlspecialchars(), el navegador interpretaría el contenido como un script y lo ejecutaría, lo que podría comprometer la seguridad de la página.
+ Pero si usamos htmlspecialchars(), PHP convierte los caracteres especiales en entidades HTML seguras
+
+ Resumen:
+ Objetivo: Proteger contra ataques XSS y evitar que caracteres especiales se interpreten como código HTML o JavaScript.
+Uso: Se recomienda utilizar htmlspecialchars() cada vez que se muestre contenido enviado por el usuario en una página web 
+para garantizar la seguridad.*/
 ?>
