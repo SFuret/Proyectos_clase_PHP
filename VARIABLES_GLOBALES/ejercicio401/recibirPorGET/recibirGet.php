@@ -2,6 +2,9 @@
 
 // Recibiendo los datos del formulario
 
+
+if(isset($_GET('enviar'))) //comprueva que existe el formulario
+{
 /*Forma 1 de recibir*/
 if(isset($_GET['nombre']))
 {
@@ -57,6 +60,8 @@ echo "País: " . htmlspecialchars($pais) . "<br>";
 echo "Comentarios: " . htmlspecialchars($comentarios) . "<br>";
 echo "Fecha de nacimiento: " . htmlspecialchars($fecha) . "<br>";
 echo "Edad: " . htmlspecialchars($edad) . "<br>";
+
+};
 
 /*Nota: htmlspecialchars() es una función en PHP que convierte caracteres especiales en sus equivalentes de entidades HTML. 
 Esto es útil para prevenir ataques de Cross-Site Scripting (XSS), que ocurren cuando un atacante intenta inyectar código 
