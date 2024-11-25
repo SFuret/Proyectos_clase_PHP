@@ -58,13 +58,13 @@ else{
       //convertir el json en un arrayAsociativo
 
       $arrayCoches= json_decode($contenidoJson, true);
-      var_dump($arrayCoches);
+      var_dump($arrayCoches); //muestro el array por pantalla
 
 
     }
   }catch(Exception $e)
   {
-    $e->getMessage();
+   echo "Error".$e->getMessage();
   }
 
 
