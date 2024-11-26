@@ -1,0 +1,14 @@
+{
+    "coche1": {
+        "marca": "Totota",
+        "precio": "50000"
+    },
+    "coche2": {
+        "marca": "Audi",
+        "precio": "30000"
+    },
+    "coche3": {
+        "marca": "Mercedes",
+        "precio": "50000"
+    }
+}

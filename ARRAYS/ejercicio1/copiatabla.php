@@ -7,6 +7,6 @@ for($i=1; $i <11; $i++)
     }
     echo "<br>";
 }
-sqrt()
-pow($base, $potencia);
+/*sqrt()
+pow($base, $potencia);*/
 ?>
