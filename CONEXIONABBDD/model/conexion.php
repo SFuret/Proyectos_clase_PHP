@@ -26,22 +26,29 @@ function cerrarConexion($conexion)
 
 /*Insertar */
 
-function insertar($conexion, $consulta)
+function insertarEliminarModificar($conexion,$consulta)
 {
 
     if($conexion->query($consulta))
     {
-        echo "<p>Registro relizado con éxito</p>";
+        return true;
     }
     else{
          
-        echo "<p>Error al insertar:{$conexion->error}</p>";
+        echo "<p>Error:{$conexion->error}</p>";
+        return false;
     }
-
-    $conexion->close();/*Cierro la conexión*/
 
     /*Nota: cada vez que voy a hacer una consulta debo abrir y cerrar la conexión*/
 }
 
+/*Obtener*/
+
+function obtenerValores($conexion,$consulta)
+{
+$resultado= $conexion->query($consulta);
+$valoresArray=$resultado->fetch_all();
+return $valoresArray;
+}
 
 ?>
