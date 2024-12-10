@@ -1,24 +1,24 @@
 <?php 
+/*Clase de abstracción de datos, la creo con funciones estáticas para que se comporte como una clase estática */
+
+class ConectarBBDD
+{
 
 /*Establecer una comexión a la BBDD*/
-function establecerConexion(){    
+public static function establecerConexion(){    
 $conexion= new mysqli("127.0.0.1","phpmyadmin","1234","Prueba");
 if($conexion->connect_errno)
 {
     echo "Error de conexión".$conexion->connect_errno;
     exit;/*no sigo si no se puede establecer la conexión*/
 }
-else{
-    echo "conexión establecida";
-}
-
 return $conexion;
 }
 
 
 /*Cerrar la conexión a la BBDD*/
 
-function cerrarConexion($conexion)
+public static function cerrarConexion($conexion)
 {
  $conexion->close();
 }
@@ -26,7 +26,7 @@ function cerrarConexion($conexion)
 
 /*Insertar */
 
-function insertarEliminarModificar($conexion,$consulta)
+public static function insertarEliminarModificar($conexion,$consulta)
 {
 
     if($conexion->query($consulta))
@@ -44,11 +44,12 @@ function insertarEliminarModificar($conexion,$consulta)
 
 /*Obtener*/
 
-function obtenerValores($conexion,$consulta)
+public static function obtenerValores($conexion,$consulta)
 {
 $resultado= $conexion->query($consulta);
+$valoresArray=[]; //le indico que va a ser un array donde voy a recoger el resultado
 $valoresArray=$resultado->fetch_all();
 return $valoresArray;
 }
-
+};
 ?>
