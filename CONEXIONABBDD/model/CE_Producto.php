@@ -50,6 +50,16 @@ public static function eliminarProducto($codProducto)
     ConectarBBDD::cerrarConexion($conect);
 }
 
+
+public static function modificarProducto($codProducto,$producto)
+{
+  $conect=ConectarBBDD::establecerConexion();
+  $consulta="UPDATE Producto SET codProducto=$producto->getCodProducto(),nombre=$producto->getNombre(),precio=$producto->getPrecio(),cantidad=$producto->getCantidad() ";
+  ConectarBBDD::insertarEliminarModificar($conect,$consulta);
+  ConectarBBDD::cerrarConexion($conect);
+}
+
+/*Listar productos */
 public static function listarProductos()
 {
     $conect=ConectarBBDD::establecerConexion();
@@ -59,12 +69,13 @@ public static function listarProductos()
     return $arrayResultante;
 }
 
-public static function modificarProducto($codProducto,$producto)
+public static function listarProductosArrayAsociativo()
 {
-  $conect=ConectarBBDD::establecerConexion();
-  $consulta="UPDATE Producto SET codProducto=$producto->getCodProducto(),nombre=$producto->getNombre(),precio=$producto->getPrecio(),cantidad=$producto->getCantidad() ";
-  ConectarBBDD::insertarEliminarModificar($conect,$consulta);
-  ConectarBBDD::cerrarConexion($conect);
+    $conect=ConectarBBDD::establecerConexion();
+    $consulta="SELECT codProducto, nombre, precio, cantidad FROM  Producto  ";
+    $arrayAsociativo=ConectarBBDD::obtenerValoresAsociativo($conect,$consulta);
+    ConectarBBDD::cerrarConexion($conect);
+    return $arrayAsociativo;
 }
 
 }

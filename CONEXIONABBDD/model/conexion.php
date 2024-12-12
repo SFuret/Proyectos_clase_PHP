@@ -1,6 +1,7 @@
 <?php 
 /*Clase de abstracción de datos, la creo con funciones estáticas para que se comporte como una clase estática */
 
+
 class ConectarBBDD
 {
 
@@ -42,7 +43,7 @@ public static function insertarEliminarModificar($conexion,$consulta)
     /*Nota: cada vez que voy a hacer una consulta debo abrir y cerrar la conexión*/
 }
 
-/*Obtener*/
+/*Obtener y devolver un array numérico*/
 
 public static function obtenerValores($conexion,$consulta)
 {
@@ -51,5 +52,19 @@ $valoresArray=[]; //le indico que va a ser un array donde voy a recoger el resul
 $valoresArray=$resultado->fetch_all();
 return $valoresArray;
 }
+
+/*Obtener y devolver un array numérico*/
+
+public static function obtenerValoresAsociativo($conexion,$consulta)
+{
+$resultado= $conexion->query($consulta);
+$valoresArray=[]; //le indico que va a ser un array donde voy a recoger el resultado
+$valoresArray=$resultado->fetch_all(MYSQLI_ASSOC);
+return $valoresArray;
+}
+
+
+
 };
+
 ?>
