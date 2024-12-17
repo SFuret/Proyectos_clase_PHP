@@ -46,16 +46,26 @@
       <th>Precio</th>
       <th>Cantidad</th>
     </tr>
+    <?php 
+    foreach($productosAsociativo as $productoA)
+    {
+    ?>
     <tr>
-      <?php var_dump($productosAsociativo);?>
-      <th><?php echo $productosAsociativo["codProducto"];?></th>
-      <th><?php echo $productosAsociativo['nombre'];?></th>
-      <th><?php echo $productosAsociativo['precio'];?></th>
-      <th><?php echo  $productosAsociativo['cantidad'];?></th>
-
+      <th><?php echo$productoA["codProducto"];?></th>
+      <td><?php echo $productoA['nombre'];?></td>
+      <td><?php echo $productoA['precio'];?></td>
+      <td><?php echo  $productoA['cantidad'];?></td>
     </tr>
+   <?php 
+   };
+   ?>
   </table>
-
+<br><br>
+<form action="../controll/CC_listarProductos.php" method="POST">
+  <button name="eliminar" type="submit" >Eliminar Producto</button>  
+  <button name="modificar" type="submit" >Modificar Producto</button>
+  <button name="agregar" type="submit" >Agregar Producto</button>
+  </form> 
 </body>
 
 </html>
