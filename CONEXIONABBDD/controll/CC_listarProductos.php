@@ -19,15 +19,15 @@ include "../view/CI_ListarProductos.php";
 
 if(isset($_POST['agregar']))
 {
-    header("Location: ../view/CI_AgregarProducto.php");
+    include_once("../view/CI_AgregarProducto.php");
 }
 else if(isset($_POST['eliminar']))
 {
-    header("Location: ../view/CI_EliminarProducto.php");
+    include_once("../view/CI_EliminarProducto.php");
 }
 else if(isset($_POST['modificar']))
 {
-    header("Location: ../view/CI_ModificarProducto.php");
+    include_once("../view/CI_ModificarProducto.php");
 }
 
 /*******AGREGAR PRODUCTO******/
@@ -37,13 +37,12 @@ if(isset($_POST['agregarProducto'])) //compruebo que el formulario agregarProduc
     $cod= $_POST['cod'];
     $nombre=$_POST['nombre'];
     $precio=$_POST['precio'];
-    $cantidad=$_POST['cantidad'];
-     
+    $cantidad=$_POST['cantidad'];     
     $producto= new Producto($cod, $nombre, $precio, $cantidad);
     Producto::agregarProducto($producto);
 }
 
-/*******ELIMINAR PRODUCTO******/
+/*******ELIMINAR PRODUCTO**Lo q aparece en la url es un controlador****/
 
 
 

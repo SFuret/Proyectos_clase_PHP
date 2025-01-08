@@ -51,7 +51,7 @@
     {
     ?>
     <tr>
-      <th><?php echo$productoA["codProducto"];?></th>
+      <th><?php echo $productoA["codProducto"];?></th>
       <td><?php echo $productoA['nombre'];?></td>
       <td><?php echo $productoA['precio'];?></td>
       <td><?php echo  $productoA['cantidad'];?></td>

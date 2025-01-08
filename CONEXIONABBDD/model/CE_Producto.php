@@ -38,8 +38,12 @@ function getCantidad()
 public static function agregarProducto($producto){
 $conect= ConectarBBDD::establecerConexion();
 $consulta= "INSERT INTO `Producto`(`codProducto`, `nombre`, `precio`, `cantidad`) VALUES ($producto->codProducto,$producto->precio,$producto->precio,$producto->cantidad)";
-ConectarBBDD::insertarEliminarModificar($conect,$consulta);
+$resultado=ConectarBBDD::insertarEliminarModificar($conect,$consulta);
 ConectarBBDD::cerrarConexion($conect);
+if($resultado)
+{
+    echo "Prudcto insertado con éxito";
+}
 } 
 
 public static function eliminarProducto($codProducto)
@@ -72,7 +76,7 @@ public static function listarProductos()
 public static function listarProductosArrayAsociativo()
 {
     $conect=ConectarBBDD::establecerConexion();
-    $consulta="SELECT codProducto, nombre, precio, cantidad FROM  Producto  ";
+    $consulta="SELECT codProducto, nombre, precio, cantidad FROM  Producto";
     $arrayAsociativo=ConectarBBDD::obtenerValoresAsociativo($conect,$consulta);
     ConectarBBDD::cerrarConexion($conect);
     return $arrayAsociativo;

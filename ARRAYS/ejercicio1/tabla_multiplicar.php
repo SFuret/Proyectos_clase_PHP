@@ -41,5 +41,5 @@ for ($i=0; $i <11; $i++) {
    }
 }
 
-///print_r($tablaMultiplicar);
+//print_r($tablaMultiplicar);
 ?>

@@ -1,4 +1,5 @@
 <?php 
+//otra forma de declarar un array asociativo, en este caso solo tiene clave un elemento del array
 $coches = array(
     array("1234 ABC" => "Toyota", "Yaris", 4),
     array("5678 DEF" => "Ford", "Focus", 4),
