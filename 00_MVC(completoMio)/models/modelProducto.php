@@ -17,6 +17,15 @@ Conexion::cerrarConexion();
 return $arrayResultados;
 }
 
+public static function eliminarProducto($id)
+{
+    $query="DELETE FROM Producto WHERE codProducto=$id";
+    Conexion::establecerConexion();
+    $result=Conexion::hacerConsulta($query);
+    Conexion::cerrarConexion();
+    return $result;
+}
+
 };
 
 ?>

@@ -2,10 +2,11 @@
 
 class controlGeneral{
 
-public function ejecutar($action)
+public function ejecutar($action, $id)
 {
-    $this->$action();
+    $this->$action($id);
 }
+
 
 public function default()
 {

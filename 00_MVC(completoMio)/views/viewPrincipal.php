@@ -6,10 +6,25 @@
     <title>Principal</title>
 </head>
 <body>
+   
+  <!--Mostrar todos los Productos-->
    <form action="index.php" method="GET">
     <input type="text" value="controlProductos" name="control" hidden>
     <input type="text" value="mostrarProductos" name="action" hidden>
     <button>Mostrar Productos</button>
    </form>
+   
+   <!--Eliminar Producto-->
+   <form action="index.php" method="GET">
+   <input type="text" value="controlProductos" name="control" hidden>
+   <input type="text" value="eliminarProducto" name="action" hidden>
+   <input type="number" name="id">
+   <button>Eliminar</button>
+   </form>
+   <p> <?php if($this->$eliminado)
+   {echo "Producto eliminado";}
+   else{
+    echo "No se ha podido eliminar el producto";
+   }  ?> </p>
 </body>
 </html>
