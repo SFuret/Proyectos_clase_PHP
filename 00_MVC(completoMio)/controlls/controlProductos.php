@@ -4,7 +4,7 @@ include_once 'models/modelProducto.php';
     private $resultados;
     private $eliminado;
 
-    public function mostrarProductos()
+    public function mostrarProductos($id)
     {
       $this->resultados= modelProducto::mostrarTodos();
       include "views/viewProducto.php";
@@ -13,8 +13,14 @@ include_once 'models/modelProducto.php';
 
    public function eliminarProducto($id)
     {
-      $eliminado=modelProducto::eliminarProducto($id);
-      include "view/viewPrincipal.php";
+      $this->eliminado= modelProducto::eliminarProducto($id);
+      if($this->eliminado==1)
+      {
+        echo "Producto eliminado";
+      }
+      else{
+        echo "No se pudo eliminar el producto";
+      }
     }
 
     }

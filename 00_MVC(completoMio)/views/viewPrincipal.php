@@ -21,10 +21,5 @@
    <input type="number" name="id">
    <button>Eliminar</button>
    </form>
-   <p> <?php if($this->$eliminado)
-   {echo "Producto eliminado";}
-   else{
-    echo "No se ha podido eliminar el producto";
-   }  ?> </p>
 </body>
 </html>
