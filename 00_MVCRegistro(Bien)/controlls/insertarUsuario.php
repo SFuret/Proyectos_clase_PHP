@@ -15,9 +15,4 @@ $rol=$_POST['rol'];
 
 $resultInserta= modelUsuario::insertarUsuario($nombre,$user,$pass,$rol);
 include "../views/vistaUsuarioInsertado.php";
-
-
-
-
-
 ?>
