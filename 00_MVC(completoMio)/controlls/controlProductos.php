@@ -4,7 +4,7 @@ include_once 'models/modelProducto.php';
     private $resultados;
     private $eliminado;
 
-    public function mostrarProductos()
+    public function mostrarProductos($id)
     {
       $this->resultados= modelProducto::mostrarTodos();
       include "views/viewProducto.php";

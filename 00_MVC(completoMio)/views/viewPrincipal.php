@@ -21,6 +21,9 @@
    <input type="number" name="id">
    <button>Eliminar</button>
    </form>
+<<<<<<< HEAD
  
+=======
+>>>>>>> c74914a8c3f12c05b82fe0249361b2c9c5796a23
 </body>
 </html>
