@@ -14,14 +14,15 @@ class Conexion{
     {
         die("Error de conexión");
     }
-    else{
+   
         return self::$conect;
-    }
+    
     }
 
     public static function cerrarConexion()
     {
      self::$conect->close();
+     self::$conect=null; /*limpio la conexión*/
     }
 
     public static function hacerConsulta($query)
@@ -41,9 +42,30 @@ class Conexion{
         $result= self::$conect->query($query);
         $valores=[];
         $valores=$result->fetch_all(MYSQLI_ASSOC);
+        if(!$result)
+        {
+            return null;
+        }
         return $valores;
+    }
+
+    public static function devolverUnValor($query)
+    {
+        $result=self::$conect->query($query);
+        var_dump(self::$conect);
+        if(!$result)
+        {
+            return null;
+        }
+            return $result->fecth_assoc();
+        
+        
     }
 
 };
  
+
+
+
+
 ?>

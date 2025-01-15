@@ -10,7 +10,7 @@ public static function insertarProducto($producto)
 
 public static function mostrarTodos()
 {
-$query="SELECT * FROM Producto";
+$query="SELECT * FROM producto";
 Conexion::establecerConexion();
 $arrayResultados=Conexion::devolverValores($query);
 Conexion::cerrarConexion();
@@ -19,7 +19,7 @@ return $arrayResultados;
 
 public static function eliminarProducto($id)
 {
-    $query="DELETE FROM Producto WHERE codProducto=$id";
+    $query="DELETE FROM Producto WHERE id=$id";
     Conexion::establecerConexion();
     $result=Conexion::hacerConsulta($query);
     Conexion::cerrarConexion();

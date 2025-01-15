@@ -19,10 +19,9 @@
         {
         ?>
         <tr>
-        <td><?php echo $producto['codProducto']?></td>
+        <td><?php echo $producto['id']?></td>
         <td><?php echo $producto['nombre'] ?></td>
         <td><?php echo $producto['precio']?></td>
-        <td><?php echo $producto['cantidad'] ?></td>
         </tr>
         <?php 
         }?>

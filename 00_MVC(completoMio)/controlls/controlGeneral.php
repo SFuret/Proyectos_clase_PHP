@@ -1,19 +1,21 @@
-<?php 
+<?php
 
-class controlGeneral{
-
-public function ejecutar($action, $id)
+class controlGeneral
 {
-    $this->$action($id);
-}
+
+    public function ejecutarConsulta($action)
+    {
+        $this->$action();
+    }
+
+    public function ejecutar($action, $id)
+    {
+        $this->$action($id);
+    }
 
 
-public function default()
-{
-   include "views/viewPrincipal.php";
-}
-
+    public function default()
+    {
+        include "views/viewPrincipal.php";
+    }
 };
-
-
-?>

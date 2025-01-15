@@ -13,8 +13,10 @@ include_once 'models/modelProducto.php';
 
    public function eliminarProducto($id)
     {
-      $eliminado=modelProducto::eliminarProducto($id);
-      include "view/viewPrincipal.php";
+      $this->eliminado= modelProducto::eliminarProducto($id);
+      include "views/head.php";
+      include "views/viewEliminarProducto.php";
+      include "views/footer.php";
     }
 
     }
