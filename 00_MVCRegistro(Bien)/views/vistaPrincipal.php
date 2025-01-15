@@ -52,6 +52,10 @@ if(!isset($_SESSION['usuario']))
     </form>
     
 <br><br>
+    <form action="../controlls/">
+        <button>Listar Usuarios</button>
+    </form>
+
         
     <a href= "./logout.php">Cerrar Sesión</a> 
    
