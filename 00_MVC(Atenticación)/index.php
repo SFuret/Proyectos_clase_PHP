@@ -1,3 +1,19 @@
+<?php 
+if(isset($_SESSION['usuario']))
+{
+    header("Location: controlls/controlPrincipal.php");
+}
+else{
+    $usuario=$_POST['user'];
+    $pass=$_POST['pass'];
+
+    if()
+}
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
