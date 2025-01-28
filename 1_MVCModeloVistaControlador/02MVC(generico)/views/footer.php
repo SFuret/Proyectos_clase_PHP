@@ -1,0 +1,5 @@
+<footer>
+        <p>&copy; 2024 Mi sitio web</p>
+    </footer>
+</body>
+</html>
