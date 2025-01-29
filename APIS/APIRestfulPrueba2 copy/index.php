@@ -1,45 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Productos</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-
-        label,
-        input,
-        button {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        input {
-            padding: 5px;
-            width: 200px;
-        }
-
-        button {
-            padding: 7px;
-            cursor: pointer;
-        }
-
-        #resultado {
-            white-space: pre-wrap;
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-top: 10px;
-            width: 300px;
-            height: 200px;
-            overflow: auto;
-        }
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        label, input, button { display: block; margin-bottom: 10px; }
+        input { padding: 5px; width: 200px; }
+        button { padding: 7px; cursor: pointer; }
+        #resultado { white-space: pre-wrap; border: 1px solid #ccc; padding: 10px; margin-top: 10px; width: 300px; height: 200px; overflow: auto; }
     </style>
 </head>
-
 <body>
 
     <h2>Gestión de Productos</h2>
@@ -61,7 +33,6 @@
 
     <h3>Resultado</h3>
     <pre id="resultado"></pre>
-    <div id="mostrar"></div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -71,28 +42,11 @@
             $.ajax({
                 url: API_URL,
                 type: 'GET',
-                success: function(productos) {
-                    // Inicia la tabla HTML
-                    let tablaHTML = '<table border="1"><thead><tr><th>ID</th><th>Nombre</th><th>Precio</th></tr></thead><tbody>';
-
-                    // Usamos 'forEach' para recorrer el array de productos
-                    productos.data.forEach(function(producto) {
-                        // Concatenamos cada fila de la tabla con los datos de cada producto
-                        tablaHTML += `<tr>
-                                <td>${producto[0]}</td>
-                                <td>${producto[1]}</td>
-                                <td>${producto[2]}</td>
-                              </tr>`;
-                    });
-
-                    // Cerramos la tabla
-                    tablaHTML += '</tbody></table>';
-
-                    // Insertamos la tabla en el elemento con id 'mostrar'
-                    document.getElementById('mostrar').innerHTML = tablaHTML;
+                success: function(respuesta) {
+                    const valores=JSON.stringify(respuesta, null, 2);
+                    $('#resultado').text(JSON.stringify(respuesta, null, 2));
                 },
                 error: function(xhr) {
-                    // Si ocurre un error, mostramos el mensaje de error
                     $('#resultado').text(`Error: ${xhr.responseText}`);
                 }
             });
@@ -121,10 +75,7 @@
                 url: API_URL,
                 type: 'POST',
                 contentType: 'application/json',
-                data: JSON.stringify({
-                    nombre,
-                    precio
-                }),
+                data: JSON.stringify({ nombre, precio }),
                 success: function(respuesta) {
                     $('#resultado').text(JSON.stringify(respuesta, null, 2));
                 },
@@ -143,10 +94,7 @@
                 url: `${API_URL}?id=${id}`,
                 type: 'PUT',
                 contentType: 'application/json',
-                data: JSON.stringify({
-                    nombre,
-                    precio
-                }),
+                data: JSON.stringify({ nombre, precio }),
                 success: function(respuesta) {
                     $('#resultado').text(JSON.stringify(respuesta, null, 2));
                 },
@@ -173,5 +121,4 @@
     </script>
 
 </body>
-
 </html>
