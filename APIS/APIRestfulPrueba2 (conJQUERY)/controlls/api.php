@@ -10,11 +10,11 @@ header("Content-Type: application/json");
 $method = $_SERVER['REQUEST_METHOD']; // Método HTTP
 
 // Validar que la solicitud se realice al archivo correcto
-if (basename($_SERVER['REQUEST_URI']) !== "api.php") {
+/*if (basename($_SERVER['REQUEST_URI']) !== "api.php") {
     http_response_code(404);
     echo json_encode(["error" => "Recurso no encontrado"]);
     exit();
-}
+}*/
 
 // Operar según el método HTTP
 switch ($method) {
