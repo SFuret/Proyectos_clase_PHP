@@ -1,5 +1,6 @@
 <?php
 include "../models/modelProductos.php";
+
 header("Access-Control-Allow-Origin:*");
 header("Access-Control-Allow-Method: GET,POST,PUT,PATCH,DELETE");
 header("Access-Control-Allow-Headers:Control-Type");
@@ -17,10 +18,11 @@ if(basename($_SERVER['REQUEST_URI']!=="apicopia.php"))
 switch($method){
   case 'GET':{
     //devuelve 1 producto
+    echo($_GET['id']);
     if(isset($_GET['id']))
     {
       $producto=modelProductos::devolverUnProducto($_GET['id']);
-      if($prodcuto){
+      if($producto){
       echo json_encode(["success"=>true, "data"=>$producto]);
       }
       else{

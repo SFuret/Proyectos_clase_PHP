@@ -20,7 +20,7 @@ switch($method){
     if(isset($_GET['id']))
     {
       $producto=modelProductos::devolverUnProducto($_GET['id']);
-      if($prodcuto){
+      if($producto){
       echo json_encode(["success"=>true, "data"=>$producto]);
       }
       else{

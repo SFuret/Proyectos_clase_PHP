@@ -22,6 +22,7 @@ switch ($method) {
         if (isset($_GET['id'])) { //si viene con id es que es un mostrar un producto
             // Obtener un producto específico (GET /api/productos?id={id})
             $id = intval($_GET['id']); //convierto a entero el valor obtenido
+            echo $id;
             $producto = modelProductos::devolverUnProducto($id); //$producto contendrá un array asociativo
             if ($producto) {
                 echo json_encode(["success" => true, "data" => $producto]);
