@@ -1,5 +1,0 @@
-RewriteEngine On
-RewriteBase /PROYECTOS_CLASE_PHP/0ServiciosyAPIS/01_APIRestful/api/
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ controlls/controlProductos.php [QSA,L]
