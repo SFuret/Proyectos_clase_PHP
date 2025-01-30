@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Productos</title>
+    <title>Gestión productos</title>
+</head>
+
+<body>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -38,11 +41,7 @@
             overflow: auto;
         }
     </style>
-</head>
 
-<body>
-
-    <h2>Gestión de Productos</h2>
     <label for="idProducto">ID del Producto</label>
     <input type="number" id="idProducto">
 
@@ -52,125 +51,89 @@
     <label for="precioProducto">Precio del Producto</label>
     <input type="number" step="0.01" id="precioProducto">
 
-    <button onclick="crearProducto()">Crear Producto</button>
-    <button onclick="actualizarProducto()">Actualizar Producto</button>
-    <button onclick="eliminarProducto()">Eliminar Producto</button>
-    <button onclick="obtenerProductoPorId()">Mostrar Producto</button>
-    <button onclick="obtenerTodosLosProductos()">Mostrar Todos</button>
+    <button onclick="mostrarTodos()">Mostrar Todos</button>
+    <button onclick="mostrarUno()">Mostrar Uno</button>
+    <button onclick="actualizar()">Actualizar</button>
+    <button onclick="eliminar()">Eliminar</button>
+    <button onclick="insertar()">Insertar</button>
 
-    <h3>Resultado</h3>
-    <pre id="resultado"></pre>
-    <div id="mostrar"></div>
+
+    <div id="mostrar"> </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        const API_URL = "http://localhost/Proyectos_clase_PHP/APIS/APIRestfulPrueba2/controlls/api.php";
+        const URL = "http://localhost/Proyectos_clase_PHP/APIS/APIRestfulPrueba2/controlls/api.php";
 
-        function obtenerTodosLosProductos() {
+        function mostrarTodos() {
             $.ajax({
-                url: API_URL,
+                url: URL,
                 type: 'GET',
-                success: function(productos) {
-                    // Inicia la tabla HTML
-                    let tablaHTML = '<table border="1"><thead><tr><th>ID</th><th>Nombre</th><th>Precio</th></tr></thead><tbody>';
-
-                    // Usamos 'forEach' para recorrer el array de productos
-                    productos.data.forEach(function(producto) {
-                        // Concatenamos cada fila de la tabla con los datos de cada producto
-                        tablaHTML += `<tr>
+                success: function(respuesta) {
+                    let miTabla = `<table border="1">
+                                    <tr>
+                                    <td>Código</td>
+                                    <td>Nombre</td>
+                                    <td>Precio</td>
+                                     </tr>`;
+                    respuesta.data.forEach(producto => {
+                        miTabla += `
+                             <tr>
                                 <td>${producto[0]}</td>
                                 <td>${producto[1]}</td>
                                 <td>${producto[2]}</td>
-                              </tr>`;
+                              </tr>
+                     `
                     });
 
-                    // Cerramos la tabla
-                    tablaHTML += '</tbody></table>';
-
-                    // Insertamos la tabla en el elemento con id 'mostrar'
-                    document.getElementById('mostrar').innerHTML = tablaHTML;
+                    miTabla += `</table> `;
+                    document.getElementById('mostrar').innerHTML = miTabla;
                 },
-                error: function(xhr) {
-                    // Si ocurre un error, mostramos el mensaje de error
-                    $('#resultado').text(`Error: ${xhr.responseText}`);
+                error: function(detalle) {
+                    document.getElementById('mostrar').innerText = detalle.error;
                 }
             });
         }
 
-        function obtenerProductoPorId() {
-            const id = $('#idProducto').val();
-            if (!id) return alert('Por favor, ingrese un ID.');
+/*
+        function mostrarUno() {
+            let id = document.getElementById('idProducto').value;
             $.ajax({
-                url: `${API_URL}?id=${id}`,
+                url: `${URL}?id=${id}`,
                 type: 'GET',
-                success: function(respuesta) {
-                    $('#resultado').text(JSON.stringify(respuesta, null, 2));
-                },
-                error: function(xhr) {
-                    $('#resultado').text(`Error: ${xhr.responseText}`);
-                }
-            });
-        }
+                success: function(resp) {
+                    document.getElementById('mostrar').innerHTML = `
+                        <p>${resp.data.id}</p>
+                        <p>${resp.data.nombre}</p> 
+                        <p>${resp.data.precio}</p>`
 
-        function crearProducto() {
-            const nombre = $('#nombreProducto').val();
-            const precio = $('#precioProducto').val();
-            if (!nombre || !precio) return alert('Por favor, ingrese nombre y precio.');
-            $.ajax({
-                url: API_URL,
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    nombre,
-                    precio
-                }),
-                success: function(respuesta) {
-                    $('#resultado').text(JSON.stringify(respuesta, null, 2));
                 },
-                error: function(xhr) {
-                    $('#resultado').text(`Error: ${xhr.responseText}`);
+                error: function(detalle) {
+                    document.getElementById('mostrar').innerText = resp.message;
                 }
-            });
-        }
+            })
+        }*/
 
-        function actualizarProducto() {
-            const id = $('#idProducto').val();
-            const nombre = $('#nombreProducto').val();
-            const precio = $('#precioProducto').val();
-            if (!id || !nombre || !precio) return alert('Por favor, ingrese ID, nombre y precio.');
-            $.ajax({
-                url: `${API_URL}?id=${id}`,
-                type: 'PUT',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    nombre,
-                    precio
-                }),
-                success: function(respuesta) {
-                    $('#resultado').text(JSON.stringify(respuesta, null, 2));
-                },
-                error: function(xhr) {
-                    $('#resultado').text(`Error: ${xhr.responseText}`);
-                }
-            });
-        }
 
-        function eliminarProducto() {
-            const id = $('#idProducto').val();
-            if (!id) return alert('Por favor, ingrese un ID.');
-            $.ajax({
-                url: `${API_URL}?id=${id}`,
-                type: 'DELETE',
-                success: function() {
-                   // $('#resultado').text(JSON.stringify(respuesta, null, 2));
-                   document.getElementById('resultado').innerText=message;
-                },
-                error: function(xhr) {
-                    document.getElementById('resultado').innerHTML=respuesta.error;
-                   // $('#resultado').text(`Error: ${xhr.responseText}`);
+    function insertar(){
+    let nombre= document.getElementById('nombreProducto').value;
+    let precio=document.getElementById('precioProducto').value;
+
+    $.ajax({
+        url:URL,
+        type:'POST',
+        contentType:"application/json",
+        data:JSON.stringify({
+            nombre,
+            precio
+        }),
+        success: function(respuesta){
+            let r= JSON.stringify(respuesta,null,2);
+            document.getElementById('mostrar').innerHTML=r;
                 }
-            });
-        }
+
+    })
+
+    }
     </script>
 
 </body>
