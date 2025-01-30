@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Matrículas</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Incluimos jQuery si lo vamos a utilizar -->
+    <script src="./js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="./css/estilos.css">
+    <script>
+        //te pongo 2 rutas porque con la segunda es con la que trabajo aqui en clases pero me imagino que la primera puede valer también
+       /* const apiEstudiante="http://127.0.0.1/ProyectosPHP/U6U7_Sandra/controlls/apiEstudiantes.php";
+        const apiAsignatura="http://127.0.0.1/ProyectosPHP/U6U7_Sandra/controlls/apiAsignaturas.php";
+        const apiMatricula="http://127.0.0.1/ProyectosPHP/U6U7_Sandra/controlls/apiMatriculas.php";*/
+
+
+
+        const apiEstudiante="http://localhost:8080/U6U7_Sandra/controlls/apiEstudiantes.php";
+        const apiAsignatura="http://localhost:8080/U6U7_Sandra/controlls/apiAsignaturas.php";
+        const apiMatricula="http://localhost:8080/U6U7_Sandra/controlls/apiMatriculas.php";
+        
+      
+
+
+        
+        function llenarAsignaturas(){
+        let llenar="<table border=1>";
+        $.ajax({
+        url:apiAsignatura,
+        type:'GET',
+        success:function(resp){       
+        resp.data.forEach(asignatura => {
+           // llenar +=`<option value=${asignatura[0]}>${asignatura[1]}</option>`;
+           llenar+=``
+
+        });
+        document.getElementById('asignatura').innerHTML=llenar;
+        },
+        error:function(detalle){
+        alert(`${detalle.error}`);
+        }
+        });
+    }
+
+    function llenarEstudiantes(){
+        let llenarE;
+        $.ajax({
+        url:apiEstudiante,
+        type:'GET',
+        success:function(resp){        
+        resp.data.forEach(estudiante => {
+            llenar +=`<option value=${estudiante[0]}>${estudiante[1]}</option>`;
+        });
+        document.getElementById('alumno').innerHTML=llenarE;
+        },
+        error:function(detalle){
+        alert(`${detalle.error}`);
+        }
+        });
+    }
+
+    function insertarMatricula(){
+    let nia=  document.getElementById('niaalum').value;  
+    let codigo=  document.getElementById('codalum').value;
+    let anyo=  document.getElementById('codasig').value;
+    $.ajax({
+        url:apiMatricula,
+        type:'POST',
+        contentType:'application/json',
+        data:JSON.stringify({
+            nia,
+            codigo,
+            anyo
+        }),
+        success:function(resp){
+            alert(`${resp.message}`);           
+        },
+        error:function(detalle){
+            alert(`${resp.error}`);      
+        }
+
+    });
+}
+
+    function eliminarMatricula(){
+    let nia=  document.getElementById('niaalum').value;  
+    let codigo=  document.getElementById('codasig').value;
+    
+    $.ajax({
+        url:apiMatricula,
+        type:'DELETE',
+        contentType:'application/json',
+        data:JSON.stringify({
+            nia,
+            codigo,
+        }),
+        success:function(resp){
+            alert(`${resp.message}`);           
+        },
+        error:function(detalle){
+            alert(`${resp.error}`);      
+        }
+
+    });
+
+    
+
+
+    }
+      function llenarMatricula(){
+        $.ajax({
+        url:apiMatricula,
+        type:'GET',
+        success:function(resp){
+         let dats=json_decode(resp,true);   
+         document.getElementById('matriculas-lista').innerHTML=dats;
+        },
+        error:function(detalle){
+        alert(`${detalle.error}`);
+        }
+        });
+    }
+
+
+
+       windows.onload=()=> {
+        llenarAsignaturas();
+        llenarEstudiantes();
+        llenarMatricula();
+};
+        
+    
+        
+    </script>
+</head>
+
+<body>
+
+    <h1>Gestión de Matrículas</h1>
+    <input type="number" id="codalum" placeholder="cod Alumno">
+    <input type="number" id="codasig" placeholder="cod Asignatura">
+    <input type="number" id="niaalum" placeholder="nia Alumno" >
+    <button onclick="insertarMatricula()">Agregar Matricula</button>
+    <button onclick="eliminarMatricula()">Eliminar Matricula</button>
+
+    <!-- Desplegables para elegir alumno y asignatura -->
+    <label for="alumno">Seleccionar Alumno:</label>
+    <select id="alumno">
+        <!-- Rellena los alumnos a partir de una llamada AJAX -->
+        <!-- <option value="1001">Juan Pérez Gómez</option> -->
+    </select>
+
+    <label for="asignatura">Seleccionar Asignatura:</label>
+    <select id="asignatura">
+        <!-- Rellena las asignaturas a partir de una llamada AJAX -->
+        <!-- <option value="101">Matemáticas</option> -->
+    </select>
+
+    <button id="matricular">Matricular</button>
+
+    <h2>Lista de Matrículas</h2>
+    <ul id="matriculas-lista">
+        <!-- Rellena las matrículas a partir de una llamada AJAX -->
+        <!-- 
+            <li>
+                1001 - Juan Pérez Gómez - Matemáticas (2025)
+                <button class="eliminar-matricula" data-nia="1001" data-codigo="101">Eliminar</button>
+            </li>
+        -->
+    </ul>
+
+</body>
+
+
+
+</html>
